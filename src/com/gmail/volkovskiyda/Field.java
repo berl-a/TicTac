@@ -1,4 +1,4 @@
-package com.wolf;
+package com.gmail.volkovskiyda;
 
 public class Field {
 	public static final char DEFAULT_CELL_VALUE = ' ';
