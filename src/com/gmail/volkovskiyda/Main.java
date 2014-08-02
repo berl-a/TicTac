@@ -22,16 +22,23 @@ public class Main {
 		while (!noTurn) {
 			Scanner sc = new Scanner(System.in);
 			if (sc.hasNextInt()) {
-				int nextInt = sc.nextInt();
-				if (nextInt < Point.MIN_VALUE_NUMPAD || nextInt > Point.MAX_VALUE_NUMPAD) {
-					noTurn = true;
-					break;
+				boolean userPlacedSmth = false;
+				while(!userPlacedSmth){
+					System.out.println("place smth");
+					int nextInt = sc.nextInt();
+					if (nextInt < Point.MIN_VALUE_NUMPAD || nextInt > Point.MAX_VALUE_NUMPAD || !isCellFree(nextInt))//Нет свободного места {
+						//noTurn = true;
+						//break;
+						continue;
+					}else if(ifCellFree(nextInt)){
+						placeUsersZnak(nextInt);	
+					}
 				}
-				Point p = new Point(nextInt, field.getTurnTicTac());
-				if (field.setCell(p)) {
-					points.add(p);
-					field.show();
-				}
+				 Point p = new Point(nextInt, field.getTurnTicTac());
+				 if (field.setCell(p)) {
+				 	points.add(p);
+				 	field.show();
+				 }
 			}
 			noTurn = (field.isWinnerTac() || field.isWinnerTic() ||
 					points.size() == field.getFieldSize() * field.getFieldSize());
