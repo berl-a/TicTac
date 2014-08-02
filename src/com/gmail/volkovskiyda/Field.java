@@ -69,48 +69,21 @@ public class Field {
 	}
 
 	public boolean isWinnerTic() {
-		int count = 0;
-		for (int i = 0; i < fieldSize; i++) {
-			count = 0;
-			for (int j = 0; j < fieldSize; j++)
-				if (field[i][j] == Field.CELL_VALUE_TIC)
-					count++;
-			if (count == fieldSize)
-				return true;
-		}
 
-		for (int i = 0; i < fieldSize; i++) {
-			count = 0;
-			for (int j = 0; j < fieldSize; j++)
-				if (field[j][i] == Field.CELL_VALUE_TIC)
-					count++;
-			if (count == fieldSize)
-				return true;
-		}
-
-		count = 0;
-		for (int i = 0; i < fieldSize; i++)
-			if (field[i][i] == Field.CELL_VALUE_TIC)
-				count++;
-		if (count == fieldSize)
-			return true;
-
-		count = 0;
-		for (int i = 0; i < fieldSize; i++)
-			if (field[i][fieldSize - i - 1] == Field.CELL_VALUE_TIC)
-				count++;
-		if (count == fieldSize)
-			return true;
-
-		return false;
+		return isWinner(Field.CELL_VALUE_TIC);
 	}
 
 	public boolean isWinnerTac() {
+
+		return isWinner(Field.CELL_VALUE_TAC);
+	}
+
+	private boolean isWinner(char fieldCellValue) {
 		int count = 0;
 		for (int i = 0; i < fieldSize; i++) {
 			count = 0;
 			for (int j = 0; j < fieldSize; j++)
-				if (field[i][j] == Field.CELL_VALUE_TAC)
+				if (field[i][j] == fieldCellValue)
 					count++;
 			if (count == fieldSize)
 				return true;
@@ -119,7 +92,7 @@ public class Field {
 		for (int i = 0; i < fieldSize; i++) {
 			count = 0;
 			for (int j = 0; j < fieldSize; j++)
-				if (field[j][i] == Field.CELL_VALUE_TAC)
+				if (field[j][i] == fieldCellValue)
 					count++;
 			if (count == fieldSize)
 				return true;
@@ -127,14 +100,14 @@ public class Field {
 
 		count = 0;
 		for (int i = 0; i < fieldSize; i++)
-			if (field[i][i] == Field.CELL_VALUE_TAC)
+			if (field[i][i] == fieldCellValue)
 				count++;
 		if (count == fieldSize)
 			return true;
 
 		count = 0;
 		for (int i = 0; i < fieldSize; i++)
-			if (field[i][fieldSize - i - 1] == Field.CELL_VALUE_TAC)
+			if (field[i][fieldSize - i - 1] == fieldCellValue)
 				count++;
 		if (count == fieldSize)
 			return true;
